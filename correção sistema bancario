@@ -1,0 +1,74 @@
+import java.util.Scanner;
+public class Main {
+ public static void main(String[] args) {
+ Scanner sc = new Scanner(System.in);
+ // Cadastro do usuário
+ System.out.println("=== CADASTRO DE CONTA BANCÁRIA ===");
+ System.out.print("Informe seu nome: ");
+ String nome = sc.nextLine();
+ System.out.print("Informe seu sobrenome: ");
+ String sobrenome = sc.nextLine();
+ System.out.print("Informe um código da conta: ");
+ String codigo = sc.nextLine();
+ // Depósito inicial
+ System.out.print("Informe o valor do depósito inicial: R$ ");
+ double saldo = sc.nextDouble();
+ System.out.println("\nConta criada com sucesso!");
+ System.out.println("Titular: " + nome + " " + sobrenome);
+ System.out.println("Código da conta: " + codigo);
+ System.out.println("Saldo inicial: R$ " + saldo);
+ int opcao = -1;
+ // Menu principal com switch
+ while (opcao != 0) {
+ System.out.println("\n=== MENU BANCÁRIO ===");
+ System.out.println("1 - Depositar");
+ System.out.println("2 - Sacar");
+ System.out.println("3 - Consultar Saldo");
+ System.out.println("0 - Sair");
+ System.out.print("Escolha uma opção: ");
+ opcao = sc.nextInt();
+ switch (opcao) {
+ case 1:
+ // Depositar
+ System.out.print("Digite o valor do depósito: R$ ");
+ double valorDeposito = sc.nextDouble();
+ if (valorDeposito > 0) {
+ saldo = saldo + valorDeposito;
+ System.out.println("Depósito realizado com sucesso!");
+ } else {
+ System.out.println("Valor inválido! O depósito deve ser maior que
+zero.");
+ }
+ break;
+ case 2:
+ // Sacar
+ System.out.print("Digite o valor do saque: R$ ");
+ double valorSaque = sc.nextDouble();
+ if (valorSaque <= 0) {
+ System.out.println("Valor inválido! O saque deve ser maior que zero.");
+ } else if (valorSaque > saldo) {
+ System.out.println("Saldo insuficiente! Você não tem esse valor na
+conta.");
+ } else {
+ saldo = saldo - valorSaque;
+ System.out.println("Saque realizado com sucesso!");
+ }
+ break;
+ case 3:
+ // Consultar saldo
+ System.out.println("Seu saldo atual é: R$ " + saldo);
+ break;
+ case 0:
+ // Sair
+ System.out.println("Encerrando o sistema... Obrigado por utilizar nosso
+banco!");
+ break;
+ default:
+ // Opção inválida
+ System.out.println("Opção inválida! Tente novamente.");
+ break;
+ }
+ }
+ sc.close();
+ }
+}
